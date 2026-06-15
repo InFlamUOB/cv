@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr. Laura Bravo Merodio</title>
+<meta name="author" content="Laura Bravo Merodio" />
+<meta name="description" content="Dr. Laura Bravo Merodio — Assistant Professor in Health Data Science & Computational Biology, University of Birmingham. Machine learning and systems biology for chronic inflammation, multimorbidity and ageing." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #0f2a4a;
+    --navy-deep: #0a1f38;
+    --navy-soft: #1b3a5e;
+    --coral: #ff6b5e;
+    --coral-dark: #e8503f;
+    --ink: #2b3440;
+    --muted: #5d6b7a;
+    --line: #e4e8ee;
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --sidebar-w: 320px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--coral-dark); text-decoration: none; transition: color .15s ease; }
+  a:hover { color: var(--coral); }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 1.75rem;
+    overflow-y: auto;
+    z-index: 100;
+  }
+  .sidebar .profile { text-align: center; margin-bottom: 2rem; }
+  .avatar {
+    width: 150px; height: 150px;
+    margin: 0 auto 1.25rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.2rem; font-weight: 700; color: #fff;
+    border: 4px solid rgba(255,255,255,.15);
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    letter-spacing: 1px;
+  }
+  .sidebar h1 {
+    font-size: 1.5rem; font-weight: 700; line-height: 1.25;
+    margin-bottom: .4rem;
+  }
+  .sidebar .tagline {
+    font-size: .82rem; color: #aebfd4; font-weight: 400;
+    text-transform: uppercase; letter-spacing: .5px;
+  }
+
+  nav.nav-links { margin-top: .5rem; flex: 1; }
+  nav.nav-links ul { list-style: none; }
+  nav.nav-links a {
+    display: block;
+    color: #c3d0e2;
+    font-size: .92rem;
+    font-weight: 500;
+    padding: .55rem .75rem;
+    border-radius: 8px;
+    border-left: 3px solid transparent;
+    transition: all .15s ease;
+  }
+  nav.nav-links a:hover { background: rgba(255,255,255,.06); color: #fff; }
+  nav.nav-links a.active {
+    background: rgba(255,107,94,.14);
+    color: #fff;
+    border-left-color: var(--coral);
+  }
+
+  .socials {
+    display: flex; gap: .65rem; flex-wrap: wrap;
+    margin-top: 1.75rem; padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,.12);
+    justify-content: center;
+  }
+  .socials a {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 9px;
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    font-size: .72rem; font-weight: 600;
+  }
+  .socials a:hover { background: var(--coral); color: #fff; }
+
+  /* ---------- Main ---------- */
+  main {
+    margin-left: var(--sidebar-w);
+    max-width: 1000px;
+    padding: 0 3.5rem;
+  }
+
+  section {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 1rem;
+  }
+  section:last-child { border-bottom: none; }
+
+  .section-head {
+    display: flex; align-items: center; gap: .9rem;
+    margin-bottom: 2rem;
+  }
+  .section-head h2 {
+    font-size: 1.9rem; font-weight: 800; color: var(--navy);
+    letter-spacing: -.5px;
+  }
+  .section-head .bar { width: 42px; height: 4px; background: var(--coral); border-radius: 3px; }
+
+  /* Intro / hero */
+  #about { padding-top: 5rem; }
+  #about .lead-name {
+    font-size: 2.9rem; font-weight: 800; color: var(--navy);
+    letter-spacing: -1px; line-height: 1.05; margin-bottom: .5rem;
+  }
+  #about .lead-name span { color: var(--coral); }
+  #about .role {
+    font-size: 1.05rem; color: var(--muted); font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  #about p { margin-bottom: 1rem; color: #3a4654; max-width: 70ch; }
+  .pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .pill {
+    background: #eaf0f8; color: var(--navy-soft);
+    font-size: .8rem; font-weight: 600;
+    padding: .4rem .85rem; border-radius: 999px;
+  }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 1.75rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 6px; top: .4rem; bottom: .4rem;
+    width: 2px; background: var(--line);
+  }
+  .entry { position: relative; padding-bottom: 2rem; }
+  .entry:last-child { padding-bottom: 0; }
+  .entry::before {
+    content: ''; position: absolute; left: -1.75rem; top: .35rem;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: var(--card); border: 3px solid var(--coral);
+  }
+  .entry .when {
+    font-size: .78rem; font-weight: 700; color: var(--coral-dark);
+    text-transform: uppercase; letter-spacing: .5px;
+  }
+  .entry h3 { font-size: 1.12rem; font-weight: 700; color: var(--navy); margin: .15rem 0 .1rem; }
+  .entry .org { font-size: .92rem; font-weight: 600; color: var(--muted); margin-bottom: .4rem; }
+  .entry p { font-size: .94rem; color: #44515f; }
+  .entry ul { margin: .3rem 0 0 1.1rem; }
+  .entry ul li { font-size: .94rem; color: #44515f; margin-bottom: .2rem; }
+
+  /* Cards grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 1.25rem 1.4rem;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(15,42,74,.08); }
+  .card h3 { font-size: 1rem; color: var(--navy); margin-bottom: .5rem; font-weight: 700; }
+  .card p { font-size: .9rem; color: var(--muted); }
+  .card .badge {
+    display: inline-block; font-size: .72rem; font-weight: 700;
+    color: var(--coral-dark); background: #fff0ee;
+    padding: .2rem .6rem; border-radius: 6px; margin-bottom: .6rem;
+    text-transform: uppercase; letter-spacing: .4px;
+  }
+
+  /* Skills */
+  .skill-group { margin-bottom: 1.6rem; }
+  .skill-group h3 { font-size: 1rem; color: var(--navy); margin-bottom: .7rem; font-weight: 700; }
+  .tags { display: flex; flex-wrap: wrap; gap: .55rem; }
+  .tag {
+    background: var(--card); border: 1px solid var(--line);
+    color: var(--navy-soft); font-size: .85rem; font-weight: 500;
+    padding: .4rem .85rem; border-radius: 8px;
+  }
+  .tag.solid { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* Publications */
+  .pub-list { counter-reset: pub; }
+  .pub {
+    display: flex; gap: 1rem; padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pub:last-child { border-bottom: none; }
+  .pub .num {
+    flex-shrink: 0; width: 30px; height: 30px;
+    background: #eaf0f8; color: var(--navy);
+    border-radius: 7px; display: flex; align-items: center; justify-content: center;
+    font-size: .82rem; font-weight: 700;
+  }
+  .pub .body { font-size: .92rem; }
+  .pub .body .title { font-weight: 600; color: var(--ink); }
+  .pub .body .venue { color: var(--coral-dark); font-style: italic; }
+  .pub .body .yr { color: var(--muted); }
+
+  .muted-note { font-size: .9rem; color: var(--muted); margin-bottom: 1.2rem; }
+
+  /* Two-column lists */
+  .twocol { columns: 2; column-gap: 2.5rem; }
+  .twocol .item { break-inside: avoid; margin-bottom: 1rem; }
+  .twocol .item .t { font-weight: 600; color: var(--navy); font-size: .95rem; }
+  .twocol .item .s { font-size: .87rem; color: var(--muted); }
+
+  .award-list { list-style: none; }
+  .award-list li {
+    padding: .85rem 0 .85rem 1.6rem; position: relative;
+    border-bottom: 1px solid var(--line); font-size: .95rem;
+  }
+  .award-list li:last-child { border-bottom: none; }
+  .award-list li::before {
+    content: '★'; position: absolute; left: 0; top: .8rem;
+    color: var(--coral); font-size: .9rem;
+  }
+  .award-list .yr { font-weight: 700; color: var(--navy); margin-right: .4rem; }
+
+  footer {
+    margin-left: var(--sidebar-w);
+    text-align: center; padding: 2.5rem;
+    color: var(--muted); font-size: .85rem;
+  }
+
+  /* Mobile toggle */
+  .menu-btn {
+    display: none; position: fixed; top: 1rem; right: 1rem; z-index: 200;
+    background: var(--navy); color: #fff; border: none;
+    width: 46px; height: 46px; border-radius: 10px; font-size: 1.3rem;
+    cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.2);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform .28s ease;
+      width: 280px;
+    }
+    .sidebar.open { transform: translateX(0); }
+    main, footer { margin-left: 0; }
+    main { padding: 0 1.5rem; }
+    .menu-btn { display: block; }
+    #about .lead-name { font-size: 2.1rem; }
+    .twocol { columns: 1; }
+  }
+</style>
+</head>
+<body>
+
+<button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="profile">
+    <div class="avatar">LB</div>
+    <h1>Dr. Laura Bravo Merodio</h1>
+    <p class="tagline">Health Data Science · Computational Biology</p>
+  </div>
+  <nav class="nav-links">
+    <ul>
+      <li><a href="#about" class="active">About</a></li>
+      <li><a href="#experience">Research Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#talks">Talks &amp; Events</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#service">Service &amp; Societies</a></li>
+    </ul>
+  </nav>
+  <div class="socials">
+    <a href="mailto:l.bravo@bham.ac.uk" title="Email">Email</a>
+    <a href="https://github.com/InFlamUOB" target="_blank" rel="noopener" title="GitHub">GitHub</a>
+    <a href="https://twitter.com/laura_bravo94" target="_blank" rel="noopener" title="Twitter/X">X</a>
+    <a href="https://orcid.org/0000-0001-8878-8434" target="_blank" rel="noopener" title="ORCID">ORCID</a>
+  </div>
+</aside>
+
+<main>
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="lead-name">Laura <span>Bravo Merodio</span></p>
+    <p class="role">Assistant Professor in Health Data Science &amp; Computational Biology · University of Birmingham, UK</p>
+    <p>I am an Assistant Professor in health data science and computational biology at the University of Birmingham, based at the Centre for Health Data Science. My research studies chronic inflammation through machine learning and systems biology, with a current focus on multimorbidity, ageing and disease biology.</p>
+    <p>I work at the intersection of biomedical engineering, computational biology and applied machine learning — building pipelines that turn complex biological and clinical data into interpretable, clinically meaningful insight. I am also an educator, leading Masters modules in Health Data Science and teaching R to researchers across disciplines.</p>
+    <div class="pills">
+      <span class="pill">Machine Learning</span>
+      <span class="pill">Systems Biology</span>
+      <span class="pill">Multimorbidity &amp; Ageing</span>
+      <span class="pill">Chronic Inflammation</span>
+      <span class="pill">Biomarker Discovery</span>
+      <span class="pill">Explainable AI</span>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head"><span class="bar"></span><h2>Research Experience</h2></div>
+    <div class="timeline">
+      <div class="entry">
+        <p class="when">2024 – Present</p>
+        <h3>Assistant Professor</h3>
+        <p class="org">University of Birmingham, UK</p>
+        <p>Researching systems biology in multimorbidity and ageing, with a focus on chronic inflammation and disease biology.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2022 – 2024</p>
+        <h3>Research Fellow</h3>
+        <p class="org">University of Birmingham, UK — Gkoutos Lab</p>
+        <p>Bioinformatician and health data analyst working on multimorbidity and ageing.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2021</p>
+        <h3>Research Assistant</h3>
+        <p class="org">University of Birmingham, UK</p>
+        <p>Collaborated with Dr Magda Chechlacz on modelling cognitive outcomes in the UK Biobank: education, noradrenaline and frontoparietal networks.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2017</p>
+        <h3>Program Associate &amp; Technology Analyst</h3>
+        <p class="org">Mundi Ventures (MundiLab), Madrid, Spain</p>
+        <p>Helped run MundiLab, a startup acceleration programme organised alongside Munich Re, then moved into a technology analyst role at Mundi Ventures, the venture capital firm behind MundiLab.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2015 – 2016</p>
+        <h3>Undergraduate Researcher</h3>
+        <p class="org">Madrid, Spain</p>
+        <ul>
+          <li>Development and implementation of a 3D bioprinter for cardiac structures (Hospital General Universitario Gregorio Marañón).</li>
+          <li>In vivo imaging with zebrafish as an animal model and genetic recombination studies — José Luis de la Pompa's group (Centro Nacional de Investigaciones Cardiovasculares).</li>
+          <li>Analysis of local field potential (LFP) signals via independent component analysis (ICA) and development of a new tool to filter LFPs and uncover generators — Oscar Herreras's group (Cajal Institute, CSIC).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-head"><span class="bar"></span><h2>Education &amp; Qualifications</h2></div>
+    <div class="timeline">
+      <div class="entry">
+        <p class="when">2023</p>
+        <h3>PhD — Mechanisms of Inflammatory Diseases (MIDAS)</h3>
+        <p class="org">University of Birmingham, UK</p>
+        <p><em>Thesis:</em> "Computational Biology Applications in the study of complex systems". Supervised by Prof Georgios Gkoutos, Prof Janet Lord and Dr Animesh Acharjee.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2018</p>
+        <h3>MRes — Mechanisms of Inflammatory Diseases (MIDAS)</h3>
+        <p class="org">University of Birmingham, UK &amp; Monash University, Australia</p>
+        <p>Mathematical modelling of tristetraprolin (TTP); machine learning on trauma's immune signature; intravital microscopy in Lyn(-/-) mice.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2016</p>
+        <h3>Biomedical Engineering</h3>
+        <p class="org">Carlos III University, Spain</p>
+        <p>Development and implementation of a 3D bioprinter for cardiac structures.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2012</p>
+        <h3>Secondary Education</h3>
+        <p class="org">British Council School, Spain</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:1.5rem;">
+      <span class="badge">Grant</span>
+      <h3>Mechanisms of Inflammatory Diseases (MIDAS)</h3>
+      <p>Wellcome Trust 215182/Z/19/Z · 2017–2022</p>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section id="teaching">
+    <div class="section-head"><span class="bar"></span><h2>Teaching</h2></div>
+    <p class="muted-note">Supervised 1 undergraduate thesis, 1 MRes student in Biomedical Research and 6 MSc students in Health Data Science.</p>
+    <div class="timeline">
+      <div class="entry">
+        <p class="when">2024 – Present</p>
+        <h3>Assistant Professor — Module Lead</h3>
+        <p class="org">University of Birmingham, UK</p>
+        <p>Module lead for "Data Analytics &amp; Statistical Machine Learning for Health Data Science" and "Integrative Multimodal Data Analytics" in the MSc in Health Data Science.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2021 – Present</p>
+        <h3>R Carpentries Instructor</h3>
+        <p class="org">University of Birmingham, UK</p>
+        <p>Introduction to R courses for researchers across the university (cumulative total of 60+ students).</p>
+      </div>
+      <div class="entry">
+        <p class="when">2022 – 2023</p>
+        <h3>Instructor — Introduction to R</h3>
+        <p class="org">University of Birmingham, UK</p>
+        <p>Taught 30+ students and developed course material.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2022 – 2023</p>
+        <h3>Teaching Assistant</h3>
+        <p class="org">University of Birmingham, UK</p>
+        <p>MSc Health Data Science — grading assignments, tutor to 5 students, supervisor of 2 master thesis projects.</p>
+      </div>
+      <div class="entry">
+        <p class="when">2019 – 2021</p>
+        <h3>Teaching Assistant</h3>
+        <p class="org">University of Birmingham, UK</p>
+        <p>Taught Support Vector Machines and Exploratory Data Analysis with R for the MSc Bioinformatics and MSc Health Data Science.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head"><span class="bar"></span><h2>Skills</h2></div>
+    <div class="skill-group">
+      <h3>Programming &amp; Tools</h3>
+      <div class="tags">
+        <span class="tag solid">R</span>
+        <span class="tag solid">RShiny</span>
+        <span class="tag solid">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Git</span>
+        <span class="tag">MATLAB</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Domains</h3>
+      <div class="tags">
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Systems Biology</span>
+        <span class="tag">Biomarker Discovery</span>
+        <span class="tag">Explainable AI</span>
+        <span class="tag">Bioinformatics</span>
+        <span class="tag">Computational Biology</span>
+        <span class="tag">Statistical Modelling</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Languages</h3>
+      <div class="tags">
+        <span class="tag">Spanish — Native</span>
+        <span class="tag">English — Proficient</span>
+        <span class="tag">French — B1</span>
+        <span class="tag">German — A2</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Courses &amp; Training</h3>
+      <div class="tags">
+        <span class="tag">BEACON Associate Fellowship</span>
+        <span class="tag">Stanford CS229 Machine Learning (B+)</span>
+        <span class="tag">Google Data Analytics Specialization</span>
+        <span class="tag">Frank Harrell RMS Statistics</span>
+        <span class="tag">Data Science &amp; Big Data Analytics — MITxPro</span>
+        <span class="tag">Personal License (PIL A, B &amp; C) Rodents</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="section-head"><span class="bar"></span><h2>Selected Publications</h2></div>
+    <p class="muted-note">23 refereed papers and one book chapter. Full list on <a href="https://scholar.google.com/citations?user=" target="_blank" rel="noopener">Google Scholar</a> · <a href="https://orcid.org/0000-0001-8878-8434" target="_blank" rel="noopener">ORCID 0000-0001-8878-8434</a>.</p>
+    <div class="pub-list">
+      <div class="pub"><div class="num">1</div><div class="body"><span class="title">Machine learning for the detection of early immunological markers as predictors of multi-organ dysfunction.</span> <span class="venue">Scientific Data</span>, <span class="yr">2019</span>. Bravo-Merodio L, et al.</div></div>
+      <div class="pub"><div class="num">2</div><div class="body"><span class="title">-omics biomarker identification pipeline for translational medicine.</span> <span class="venue">Journal of Translational Medicine</span>, <span class="yr">2019</span>. Bravo-Merodio L, Williams JA, Gkoutos GV, Acharjee A.</div></div>
+      <div class="pub"><div class="num">3</div><div class="body"><span class="title">A prognostic model to estimate the risk of postoperative pulmonary complications (GSU-Pulmonary Score): development and validation in three international cohorts.</span> <span class="venue">The Lancet Digital Health</span>, <span class="yr">2024</span>. Bravo L, Simões JF, et al.</div></div>
+      <div class="pub"><div class="num">4</div><div class="body"><span class="title">Explainable AI-prioritized plasma and fecal metabolites in inflammatory bowel disease and their dietary associations.</span> <span class="venue">iScience</span>, <span class="yr">2024</span>. Onwuka S, Bravo-Merodio L, Gkoutos GV, Acharjee A.</div></div>
+      <div class="pub"><div class="num">5</div><div class="body"><span class="title">Multimorbidity prediction using link prediction.</span> <span class="venue">Scientific Reports</span>, <span class="yr">2021</span>. Aziz F, Cardoso VR, Bravo-Merodio L, et al.</div></div>
+      <div class="pub"><div class="num">6</div><div class="body"><span class="title">Machine learning risk prediction of mortality for patients undergoing surgery with perioperative SARS-CoV-2: the COVIDSurg mortality score.</span> <span class="venue">British Journal of Surgery</span>, <span class="yr">2021</span>. COVIDSurg Collaborative.</div></div>
+      <div class="pub"><div class="num">7</div><div class="body"><span class="title">Early onset of immune-mediated diseases in minority ethnic groups in the UK.</span> <span class="venue">BMC Medicine</span>, <span class="yr">2022</span>. Sharma-Oates A, et al. (incl. Bravo L).</div></div>
+      <div class="pub"><div class="num">8</div><div class="body"><span class="title">The ultra-acute steroid response to traumatic injury: a cohort study.</span> <span class="venue">European Journal of Endocrinology</span>, <span class="yr">2023</span>. Bentley C, Hazeldine J, Bravo L, et al.</div></div>
+      <div class="pub"><div class="num">9</div><div class="body"><span class="title">Translational biomarkers in the era of precision medicine.</span> <span class="venue">Advances in Clinical Chemistry (book chapter)</span>, <span class="yr">2021</span>. Bravo-Merodio L, et al. Elsevier.</div></div>
+    </div>
+  </section>
+
+  <!-- TALKS & EVENTS -->
+  <section id="talks">
+    <div class="section-head"><span class="bar"></span><h2>Talks &amp; Events</h2></div>
+
+    <h3 style="color:var(--navy);font-size:1.1rem;margin:0 0 1rem;">Conference Presentations</h3>
+    <div class="grid">
+      <div class="card"><span class="badge">Poster · 2022</span><h3>Longitudinal analysis of biological age (PhenoAge) in UK Biobank</h3><p>European Conference on Computational Biology, Barcelona, Spain</p></div>
+      <div class="card"><span class="badge">Poster · 2022</span><h3>Modelling cognitive outcomes in the UK Biobank</h3><p>Organization for Human Brain Mapping (OHBM), Glasgow, UK</p></div>
+      <div class="card"><span class="badge">Flash Talk · 2021</span><h3>Biological age, systemic inflammation &amp; multimorbidity in UK Biobank</h3><p>Birmingham Inflammation, Repair and Ageing (BIRA), online</p></div>
+      <div class="card"><span class="badge">Webinar · 2021</span><h3>Advanced data techniques to reduce risk during COVID recovery</h3><p>CovidSurg / Medtronic, online</p></div>
+      <div class="card"><span class="badge">Oral · 2019</span><h3>Integrative analysis of chronic inflammatory diseases</h3><p>Symposium on Mechanisms of Inflammation, Birmingham, UK</p></div>
+      <div class="card"><span class="badge">Oral · 2019</span><h3>Immune system dynamics immediately post trauma: Golden Hour Cohort</h3><p>BSI Trauma Immunology Workshop, Birmingham, UK</p></div>
+      <div class="card"><span class="badge">Oral · 2018</span><h3>Omics biomarker identification pipeline using machine learning</h3><p>LeedsOmics Research Symposium, Leeds, UK</p></div>
+      <div class="card"><span class="badge">Oral · 2016</span><h3>Development of a 3D bioprinter for cardiac structures</h3><p>CASEIB International Congress, Valencia, Spain</p></div>
+    </div>
+
+    <h3 style="color:var(--navy);font-size:1.1rem;margin:2.2rem 0 1rem;">Conference Organisation</h3>
+    <div class="twocol">
+      <div class="item"><p class="t">Ageing and Diseases Conference</p><p class="s">Organising Committee · Cambridge, UK · 2023</p></div>
+      <div class="item"><p class="t">I Cancer Symposium</p><p class="s">Organising Committee · Birmingham, UK · 2022</p></div>
+      <div class="item"><p class="t">IX International Symposium SRUK/CERU</p><p class="s">Organising Committee · Oxford, UK · 2022</p></div>
+      <div class="item"><p class="t">Symposium on Mechanisms of Inflammation</p><p class="s">Organising Committee · Birmingham, UK · 2018</p></div>
+    </div>
+
+    <h3 style="color:var(--navy);font-size:1.1rem;margin:2.2rem 0 1rem;">Invited Lectures &amp; Roundtables</h3>
+    <div class="twocol">
+      <div class="item"><p class="t">Mujeres Avenir — Women in Science roundtable</p><p class="s">"Poniendo en valor: el talento femenino en la ciencia" · Madrid, Spain · 2022</p></div>
+      <div class="item"><p class="t">CovidSurg Risk Calculator Presentation</p><p class="s">with Medtronic · online · 2021</p></div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards">
+    <div class="section-head"><span class="bar"></span><h2>Awards &amp; Honours</h2></div>
+    <ul class="award-list">
+      <li><span class="yr">2021</span>Third-year PhD Commendation Prize, Institute of Cancer and Genomic Sciences (ICGS), University of Birmingham</li>
+      <li><span class="yr">2016</span>Undergraduate Thesis Prize — oral presentation, CASEIB 2016 International Congress</li>
+      <li><span class="yr">2012</span>Secondary Education Prize (Baccalaureate) for Science</li>
+    </ul>
+  </section>
+
+  <!-- SERVICE -->
+  <section id="service">
+    <div class="section-head"><span class="bar"></span><h2>Service &amp; Societies</h2></div>
+    <div class="skill-group">
+      <h3>Societies &amp; Organisations</h3>
+      <div class="twocol">
+        <div class="item"><p class="t">International Society for Computational Biology (ISCB)</p><p class="s">Member</p></div>
+        <div class="item"><p class="t">Society of Spanish Researchers in the UK (SRUK)</p><p class="s">Co-director of Communications (2023/24); Midlands Constituency Director (2021)</p></div>
+        <div class="item"><p class="t">WISE — Women in Science and Engineering</p><p class="s">Member &amp; Volunteer (2019) — delivering extra science classes in schools</p></div>
+        <div class="item"><p class="t">Menudos Corazones</p><p class="s">Member &amp; Volunteer (2015–17) — supporting hospitalised children, Hospital Gregorio Marañón, Madrid</p></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Peer Review</h3>
+      <div class="tags">
+        <span class="tag">BMC Medical Genomics — 2022–present</span>
+        <span class="tag">Genes — 2021–present</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Laura Bravo Merodio · Centre for Health Data Science, University of Birmingham · <a href="mailto:l.bravo@bham.ac.uk">l.bravo@bham.ac.uk</a></p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.getElementById('menuBtn');
+  menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+  // Scroll spy + close menu on link click
+  const links = document.querySelectorAll('.nav-links a');
+  const sections = [...document.querySelectorAll('section')];
+  links.forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
